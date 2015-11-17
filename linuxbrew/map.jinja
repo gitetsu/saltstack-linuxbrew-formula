@@ -1,0 +1,33 @@
+{% set linuxbrew_pkgs = salt['grains.filter_by']({
+    'Debian': {
+        'pkgs': [
+            'build-essential',
+            'curl',
+            'git',
+            'irb',
+            'm4',
+            'ruby',
+            'texinfo',
+            'libbz2-dev',
+            'libcurl4-openssl-dev',
+            'libexpat-dev',
+            'libncurses-dev',
+            'zlib1g-dev',
+        ],
+    },
+    'RedHat': {
+        'pkgs': [
+            'curl',
+            'git',
+            'ruby-irb',
+            'm4',
+            'ruby',
+            'texinfo',
+            'bzip2-devel',
+            'libcurl-devel',
+            'expat-devel',
+            'ncurses-devel',
+            'zlib-devel',
+        ],
+    },
+}, merge=salt['pillar.get']('linuxbrew_pkgs:lookup')) %}
